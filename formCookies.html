@@ -1,0 +1,45 @@
+<html> 
+   <head> 
+      <script type = "text/javascript">  
+         function WriteCookie() {  
+            
+            if( document.cookieForm.customer.value == "" ){  
+               alert ("Enter some value!");  
+               return;  
+            } 
+
+            alert(document.cookieForm.customer.value);
+            //cookievalue =  escape(document.cookieForm.customer.value) + ";";  
+            cookievalue =  document.cookieForm.customer.value + ";";
+            alert(cookievalue);
+           // document.cookie[0] = "name  = " + cookievalue; 
+           var tt = decodeURIComponent(document.cookie);
+            alert(tt); 
+            
+            //document.write ("Setting Cookies : " + "name = " + cookievalue );  
+         }  
+
+         var readCookie = function(){
+
+            if(document.cookie!==undefined)
+            {
+                alert('value is ', document.cookie);
+            }
+            else{
+                alert("no values");
+            }
+
+         };
+
+
+      </script> 
+   </head> 
+      
+   <body> 
+      <form name = "cookieForm" action = ""> 
+         Enter name: <input type = "text" name = "customer"/> 
+         <input type = "button" value = "Set" onclick = "WriteCookie();"/> 
+         <input type = "button" value = "Get Cookie" onclick = "readCookie();"/> 
+      </form> 
+   </body> 
+</html>

@@ -1,0 +1,72 @@
+<html> 
+   <head> 
+      <script type = "text/javascript">  
+        
+        function getsum(ip1,ip2){
+
+            var isNegitive = (ip1,ip2)=> ip1 < 0 || ip2 < 0;
+
+             function sumpromise(fresolve,freject){
+
+                setTimeout(function() {
+                    if(!isNegitive(ip1,ip2)){
+                        fresolve(ip1+ip2)
+                    }
+                else{
+                        freject("rejected the sum!");
+                    }
+                    
+                }, 2000);
+                
+            }
+            
+            var retpromise = new Promise(sumpromise);
+            console.log("begin calculating the sum!");
+
+            return retpromise;
+        }
+
+         var sumSuccess = function(sum){
+            console.log("the sum of two numbers  " , sum);
+        }
+        
+        var sumSuccess3 = function(sum){
+            sumSuccess(sum)
+        }
+
+        var sumSuccess2 = function(sum){
+            sumSuccess(sum)
+            getsum(30,40).then(
+                sumSuccess3,
+                 sumerror
+            )
+        }
+
+        var sumSuccess1 = function(sum){
+            sumSuccess(sum)
+            getsum(20,30).then(
+                sumSuccess2,
+                 sumerror
+            )
+        }
+
+        var sumerror = function(error){
+            console.log("error is  ", error);
+        }
+
+        getsum(10,20).then(
+            sumSuccess1,
+            sumerror
+        );
+
+      </script> 
+   </head> 
+      
+   <body> 
+      <form name = "cookieForm" action = ""> 
+         Enter name: <input type = "text" name = "customer"/> 
+         <input type = "button" value = "Set" onclick = "WriteCookie();"/> 
+         <input type = "button" value = "Get Cookie" onclick = "readCookie();"/> 
+      </form> 
+   </body> 
+</html>
